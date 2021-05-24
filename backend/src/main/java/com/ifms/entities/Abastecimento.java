@@ -1,15 +1,19 @@
 package com.ifms.entities;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.Instant;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.ifms.entities.enums.Combustivel;
 
 @Entity
 public class Abastecimento implements Serializable {
@@ -22,13 +26,14 @@ public class Abastecimento implements Serializable {
 	@Column(name = "cpf_motorista")
 	private String cpfMotorista;
 	
-	@Column(name = "data_do_abastecimento")
-	private Date dataDoAbastecimento;
+	@Column(name = "data_do_abastecimento", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+	private Instant dataDoAbastecimento;
 	
 	@Column
 	private String quilometragem;
 	
 	@Column
+	@Enumerated(EnumType.ORDINAL)
 	private Combustivel combustivel;
 	
 	@Column(name = "quantidade_em_litros")
@@ -39,7 +44,7 @@ public class Abastecimento implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name = "id_autoposto_fk")
-	private AutoPosto autoPosto;
+	private Autoposto autoPosto;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_veiculo_fk")
@@ -48,8 +53,8 @@ public class Abastecimento implements Serializable {
 	public Abastecimento() {
 	}
 
-	public Abastecimento(Long id, String cpfMotorista, Date dataDoAbastecimento, String quilometragem,
-			Combustivel combustivel, Integer quantidadeEmLitros, Double valorPorLitro, AutoPosto autoPosto,
+	public Abastecimento(Long id, String cpfMotorista, Instant dataDoAbastecimento, String quilometragem,
+			Combustivel combustivel, Integer quantidadeEmLitros, Double valorPorLitro, Autoposto autoPosto,
 			Veiculo veiculo) {
 		this.id = id;
 		this.cpfMotorista = cpfMotorista;
@@ -78,11 +83,11 @@ public class Abastecimento implements Serializable {
 		this.cpfMotorista = cpfMotorista;
 	}
 
-	public Date getDataDoAbastecimento() {
+	public Instant getDataDoAbastecimento() {
 		return dataDoAbastecimento;
 	}
 
-	public void setDataDoAbastecimento(Date dataDoAbastecimento) {
+	public void setDataDoAbastecimento(Instant dataDoAbastecimento) {
 		this.dataDoAbastecimento = dataDoAbastecimento;
 	}
 
@@ -118,11 +123,11 @@ public class Abastecimento implements Serializable {
 		this.valorPorLitro = valorPorLitro;
 	}
 	
-	public AutoPosto getAutoPosto() {
+	public Autoposto getAutoPosto() {
 		return autoPosto;
 	}
 
-	public void setAutoPosto(AutoPosto autoPosto) {
+	public void setAutoPosto(Autoposto autoPosto) {
 		this.autoPosto = autoPosto;
 	}
 

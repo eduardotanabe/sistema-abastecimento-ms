@@ -24,7 +24,7 @@ public class Cidade implements Serializable {
 	private String nome;
 	
 	@OneToMany(mappedBy = "cidade")
-	private List<AutoPosto> autoPostos;
+	private List<Autoposto> autoPostos;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_estado_fk")
@@ -66,7 +66,7 @@ public class Cidade implements Serializable {
 		this.estado = estado;
 	}
 
-	public List<AutoPosto> getAutoPostos() {
+	public List<Autoposto> getAutoPostos() {
 		return autoPostos;
 	}
 

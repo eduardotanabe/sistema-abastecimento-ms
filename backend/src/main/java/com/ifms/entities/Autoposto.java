@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class AutoPosto implements Serializable {
+public class Autoposto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -42,7 +42,7 @@ public class AutoPosto implements Serializable {
 	@JoinColumn(name = "id_cidade_fk")
 	private Cidade cidade;
 
-	public AutoPosto(Long id, String nomeFantasia, String telefone, String email, String cnpj, String endereco,
+	public Autoposto(Long id, String nomeFantasia, String telefone, String email, String cnpj, String endereco,
 			Cidade cidade) {
 		this.id = id;
 		this.nomeFantasia = nomeFantasia;
@@ -53,7 +53,7 @@ public class AutoPosto implements Serializable {
 		this.cidade = cidade;
 	}
 
-	public AutoPosto() {
+	public Autoposto() {
 	}
 
 	public Long getId() {
@@ -139,7 +139,7 @@ public class AutoPosto implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		AutoPosto other = (AutoPosto) obj;
+		Autoposto other = (Autoposto) obj;
 		if (abastecimentos == null) {
 			if (other.abastecimentos != null)
 				return false;
