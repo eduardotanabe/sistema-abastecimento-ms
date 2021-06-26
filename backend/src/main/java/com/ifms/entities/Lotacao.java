@@ -14,6 +14,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.ifms.dto.LotacaoDTO;
+
 @Entity
 public class Lotacao implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -41,6 +43,12 @@ public class Lotacao implements Serializable {
 	@JoinColumn(name = "id_cidade_fk")
 	private Cidade cidade;
 	
+	@ManyToMany
+	@JoinTable(name = "lotacao_veiculo",
+			joinColumns = @JoinColumn(name = "lotacao_id"),
+			inverseJoinColumns = @JoinColumn(name = "veiculo_id"))
+	Set<Veiculo> veiculos = new HashSet<>();
+	
 	public Lotacao(Long id, String descricao, String endereco, String email, String site, String telefone,
 			Cidade cidade) {
 		this.id = id;
@@ -50,6 +58,16 @@ public class Lotacao implements Serializable {
 		this.site = site;
 		this.telefone = telefone;
 		this.cidade = cidade;
+	}
+
+	public Lotacao(LotacaoDTO entity) {
+		this.id = entity.getId();
+		this.descricao = entity.getDescricao();
+		this.endereco = entity.getEndereco();
+		this.email = entity.getEmail();
+		this.site = entity.getSite();
+		this.telefone = entity.getTelefone();
+		this.cidade = entity.getCidade();
 	}
 
 	public Lotacao() {
@@ -111,17 +129,15 @@ public class Lotacao implements Serializable {
 		this.cidade = cidade;
 	}
 
+	public Set<Veiculo> getVeiculos() {
+		return veiculos;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((cidade == null) ? 0 : cidade.hashCode());
-		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((endereco == null) ? 0 : endereco.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((site == null) ? 0 : site.hashCode());
-		result = prime * result + ((telefone == null) ? 0 : telefone.hashCode());
 		return result;
 	}
 
@@ -134,44 +150,15 @@ public class Lotacao implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Lotacao other = (Lotacao) obj;
-		if (cidade == null) {
-			if (other.cidade != null)
-				return false;
-		} else if (!cidade.equals(other.cidade))
-			return false;
-		if (descricao == null) {
-			if (other.descricao != null)
-				return false;
-		} else if (!descricao.equals(other.descricao))
-			return false;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (endereco == null) {
-			if (other.endereco != null)
-				return false;
-		} else if (!endereco.equals(other.endereco))
-			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (site == null) {
-			if (other.site != null)
-				return false;
-		} else if (!site.equals(other.site))
-			return false;
-		if (telefone == null) {
-			if (other.telefone != null)
-				return false;
-		} else if (!telefone.equals(other.telefone))
-			return false;
 		return true;
 	}
 
+	
 	
 	
 	

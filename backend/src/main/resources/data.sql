@@ -67,7 +67,7 @@ INSERT INTO lotacao (descricao, email, site, telefone, endereco, id_cidade_fk)
 VALUES 
 ('12º Batalhão de Polícia Militar', 'navirai@pm.ms.gov.br', 'www.pm.ms.gov.br', '(67) 3461-2145', 'Av. Fátima do Sul, 303 - Centro', 3);
 
-INSERT INTO veiculo_lotacao (lotacao_id, veiculo_id) VALUES (1, 1);
+INSERT INTO lotacao_veiculo (lotacao_id, veiculo_id) VALUES (1, 1);
 
 INSERT INTO abastecimento (cpf_motorista, data_do_abastecimento, quilometragem, combustivel, quantidade_em_litros, 
 valor_por_litro, id_autoposto_fk, id_veiculo_fk)

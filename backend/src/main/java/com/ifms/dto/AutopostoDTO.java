@@ -1,45 +1,41 @@
-package com.ifms.entities;
+package com.ifms.dto;
 
-import java.io.Serializable;
+import java.util.List;
+import java.util.stream.Collectors;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
-import com.ifms.dto.AutopostoDTO;
+import org.hibernate.validator.constraints.br.CNPJ;
 
-@Entity
-public class Autoposto implements Serializable {
-	private static final long serialVersionUID = 1L;
+import com.ifms.entities.Autoposto;
+import com.ifms.entities.Cidade;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class AutopostoDTO {
+
 	private Long id;
 	
-	@Column(name = "nome_fantasia")
+	@Size(min = 5, max = 120, message = "O tamanho mínimo é de 5 e no máximo é de 120 caracteres")
+	@NotBlank(message = "O campo é obrigatório")
 	private String nomeFantasia;
 	
-	@Column
+	@NotBlank(message = "O campo é obrigatório")
 	private String telefone;
 	
-	@Column
+	@Email
 	private String email;
 	
-	@Column
+	@CNPJ(message = "O CNPJ está incorreto")
 	private String cnpj;
-	
-	@Column
+
+	@NotBlank(message = "O campo é obrigatório")
 	private String endereco;
-	
-	@ManyToOne
-	@JoinColumn(name = "id_cidade_fk")
+
+	@NotBlank(message = "O campo é obrigatório")
 	private Cidade cidade;
 
-	public Autoposto(Long id, String nomeFantasia, String telefone, String email, String cnpj, String endereco,
+	public AutopostoDTO(Long id, String nomeFantasia, String telefone, String email, String cnpj, String endereco,
 			Cidade cidade) {
 		this.id = id;
 		this.nomeFantasia = nomeFantasia;
@@ -50,7 +46,7 @@ public class Autoposto implements Serializable {
 		this.cidade = cidade;
 	}
 	
-	public Autoposto(AutopostoDTO entity) {
+	public AutopostoDTO(Autoposto entity) {
 		this.id = entity.getId();
 		this.nomeFantasia = entity.getNomeFantasia();
 		this.telefone = entity.getTelefone();
@@ -60,7 +56,7 @@ public class Autoposto implements Serializable {
 		this.cidade = entity.getCidade();
 	}
 
-	public Autoposto() {
+	public AutopostoDTO() {
 	}
 
 	public Long getId() {
@@ -119,34 +115,8 @@ public class Autoposto implements Serializable {
 		this.cidade = cidade;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
+	public static List<AutopostoDTO> converter(List<Autoposto> autoposto) {
+		return autoposto.stream().map(AutopostoDTO::new).collect(Collectors.toList());
 	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Autoposto other = (Autoposto) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
-
-	
-	
-
-	
 	
 }
