@@ -3,6 +3,8 @@ package com.ifms.resources;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -38,14 +40,14 @@ public class AbastecimentoResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<AbastecimentoDTO> insert(@RequestBody AbastecimentoDTO dto) {
+	public ResponseEntity<AbastecimentoDTO> insert(@Valid @RequestBody AbastecimentoDTO dto) {
 		dto = service.insert(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
 		return ResponseEntity.created(uri).body(dto);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<AbastecimentoDTO> update(@RequestBody AbastecimentoDTO dto, @PathVariable Long id) {
+	public ResponseEntity<AbastecimentoDTO> update(@Valid @RequestBody AbastecimentoDTO dto, @PathVariable Long id) {
 		dto = service.update(id, dto);
 		return ResponseEntity.ok().body(dto);
 	}

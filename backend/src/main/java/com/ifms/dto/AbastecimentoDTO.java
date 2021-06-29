@@ -4,6 +4,11 @@ import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Past;
+
+import org.hibernate.validator.constraints.br.CPF;
+
 import com.ifms.entities.Abastecimento;
 import com.ifms.entities.Autoposto;
 import com.ifms.entities.Veiculo;
@@ -12,13 +17,30 @@ import com.ifms.entities.enums.Combustivel;
 public class AbastecimentoDTO {
 
 	private Long id;
+	
+	@CPF(message = "O CPF está incorreto")
 	private String cpfMotorista;
+	
+	@NotBlank(message = "O campo é obrigatório")
+	@Past
 	private Instant dataDoAbastecimento;
+	
+	@NotBlank(message = "O campo é obrigatório")
 	private String quilometragem;
+	
+	@NotBlank(message = "O campo é obrigatório")
 	private Combustivel combustivel;
+	
+	@NotBlank(message = "O campo é obrigatório")
 	private Integer quantidadeEmLitros;
+	
+	@NotBlank(message = "O campo é obrigatório")
 	private Double valorPorLitro;
+	
+	@NotBlank(message = "O campo é obrigatório")
 	private Autoposto autoPosto;
+	
+	@NotBlank(message = "O campo é obrigatório")
 	private Veiculo veiculo;
 	
 	public AbastecimentoDTO(Abastecimento entity) {

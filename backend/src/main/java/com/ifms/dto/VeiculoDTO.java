@@ -3,6 +3,8 @@ package com.ifms.dto;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.constraints.NotBlank;
+
 import com.ifms.entities.Tipo;
 import com.ifms.entities.Veiculo;
 import com.ifms.entities.enums.Combustivel;
@@ -10,14 +12,32 @@ import com.ifms.entities.enums.Combustivel;
 public class VeiculoDTO {
 
 	private Long id;
+	
+	@NotBlank(message = "O campo é obrigatório")
 	private Integer ano;
+	
+	@NotBlank(message = "O campo é obrigatório")
 	private String placa;
+	
+	@NotBlank(message = "O campo é obrigatório")
 	private String renavam;
+	
+	@NotBlank(message = "O campo é obrigatório")
 	private String patrimonio;
+	
+	@NotBlank(message = "O campo é obrigatório")
 	private String chassi;
+	
+	@NotBlank(message = "O campo é obrigatório")
 	private String versao;
+	
+	@NotBlank(message = "O campo é obrigatório")
 	private String capacidadeTanque;
+	
+	@NotBlank(message = "O campo é obrigatório")
 	private Combustivel tipoCombustivel;
+	
+	@NotBlank(message = "O campo é obrigatório")
 	private Tipo tipo;
 
 	public VeiculoDTO(Long id, Integer ano, String placa, String renavam, String patrimonio, String chassi, String versao,

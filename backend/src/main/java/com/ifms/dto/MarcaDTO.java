@@ -3,13 +3,19 @@ package com.ifms.dto;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.constraints.NotBlank;
+
 import com.ifms.entities.Marca;
 import com.ifms.entities.Modelo;
 
 public class MarcaDTO {
 
 	private Long id;
+	
+	@NotBlank(message = "O campo é obrigatório")
 	private String descricao;
+	
+	@NotBlank(message = "O campo é obrigatório")
 	private List<Modelo> modelos;
 
 	public MarcaDTO(Long id, String descricao) {

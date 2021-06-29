@@ -47,7 +47,7 @@ public class TipoResource {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<TipoDTO> update(@RequestBody TipoDTO dto, @PathVariable Long id) {
+	public ResponseEntity<TipoDTO> update(@Valid @RequestBody TipoDTO dto, @PathVariable Long id) {
 		dto = service.update(id, dto);
 		return ResponseEntity.ok().body(dto);
 	}

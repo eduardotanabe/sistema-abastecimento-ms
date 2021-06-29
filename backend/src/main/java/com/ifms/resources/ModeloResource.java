@@ -47,7 +47,7 @@ public class ModeloResource {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<ModeloDTO> update(@RequestBody ModeloDTO dto, @PathVariable Long id) {
+	public ResponseEntity<ModeloDTO> update(@Valid @RequestBody ModeloDTO dto, @PathVariable Long id) {
 		dto = service.update(id, dto);
 		return ResponseEntity.ok().body(dto);
 	}

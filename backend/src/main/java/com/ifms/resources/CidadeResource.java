@@ -47,7 +47,7 @@ public class CidadeResource {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<CidadeDTO> update(@RequestBody CidadeDTO dto, @PathVariable Long id) {
+	public ResponseEntity<CidadeDTO> update(@Valid @RequestBody CidadeDTO dto, @PathVariable Long id) {
 		dto = service.update(id, dto);
 		return ResponseEntity.ok().body(dto);
 	}

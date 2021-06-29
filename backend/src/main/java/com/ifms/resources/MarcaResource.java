@@ -47,7 +47,7 @@ public class MarcaResource {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<MarcaDTO> update(@RequestBody MarcaDTO dto, @PathVariable Long id) {
+	public ResponseEntity<MarcaDTO> update(@Valid @RequestBody MarcaDTO dto, @PathVariable Long id) {
 		dto = service.update(id, dto);
 		return ResponseEntity.ok().body(dto);
 	}

@@ -20,19 +20,19 @@ public class AutopostoDTO {
 	@NotBlank(message = "O campo é obrigatório")
 	private String nomeFantasia;
 	
+	@Size(min = 5, max = 120, message = "O tamanho mínimo é de 5 e no máximo é de 120 caracteres")
 	@NotBlank(message = "O campo é obrigatório")
 	private String telefone;
 	
 	@Email
 	private String email;
 	
-	@CNPJ(message = "O CNPJ está incorreto")
+	@CNPJ(message = "O CNPJ inválido")
 	private String cnpj;
 
 	@NotBlank(message = "O campo é obrigatório")
 	private String endereco;
 
-	@NotBlank(message = "O campo é obrigatório")
 	private Cidade cidade;
 
 	public AutopostoDTO(Long id, String nomeFantasia, String telefone, String email, String cnpj, String endereco,

@@ -3,17 +3,32 @@ package com.ifms.dto;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
 import com.ifms.entities.Cidade;
 import com.ifms.entities.Lotacao;
 
 public class LotacaoDTO {
 
 	private Long id;
+	
+	@NotBlank(message = "O campo é obrigatório")
 	private String descricao;
+	
+	@NotBlank(message = "O campo é obrigatório")
 	private String endereco;
+	
+	@Email
 	private String email;
+	
+	@NotBlank(message = "O campo é obrigatório")
 	private String site;
+	
+	@NotBlank(message = "O campo é obrigatório")
 	private String telefone;
+	
+	@NotBlank(message = "O campo é obrigatório")
 	private Cidade cidade;
 	
 	public LotacaoDTO(Long id, String descricao, String endereco, String email, String site, String telefone,

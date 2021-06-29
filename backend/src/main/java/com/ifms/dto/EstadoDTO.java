@@ -3,11 +3,15 @@ package com.ifms.dto;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.constraints.NotBlank;
+
 import com.ifms.entities.Estado;
 
 public class EstadoDTO {
 
 	private Long id;
+	
+	@NotBlank(message = "O campo é obrigatório")
 	private String uf;
 
 	public EstadoDTO(Long id, String uf) {
